@@ -1,0 +1,208 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #4b5e9e, #9b59b6, #ff6b81);
+  overflow-x: hidden; /* Prevent horizontal scroll on page */
+}
+
+.grok-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  min-height: 100vh;
+}
+
+.history {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 768px;
+  margin-bottom: 200px;
+}
+
+.card {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 0 auto;
+  width: 80vw;
+  max-width: 768px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card .question {
+  margin-bottom: 8px;
+}
+
+.card .question span {
+  display: inline-block;
+  padding: 6px 12px;
+  background: linear-gradient(to right, #3b82f6, #1e40af);
+  color: white;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card .question p {
+  margin-top: 6px;
+  color: #1f2937;
+  font-size: 16px;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.card .answer span {
+  display: inline-block;
+  padding: 6px 12px;
+  background: linear-gradient(to right, #22c55e, #15803d);
+  color: white;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card .answer p {
+  margin-top: 6px;
+  color: #1f2937;
+  font-size: 16px;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.card .loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .loading svg {
+  animation: spin 1s linear infinite;
+  height: 24px;
+  width: 24px;
+  color: #4f46e5;
+}
+
+.card .loading span {
+  margin-left: 8px;
+  color: #4b5563;
+  font-size: 16px;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.input-section {
+  position: fixed; /* Make input section sticky */
+  bottom: 0; /* Stick to the bottom */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  width: 80vw; /* Match the width of the history div */
+  max-width: 768px; /* Match the max-width of the history div */
+  padding: 16px;
+  background: transparent;
+}
+
+.input-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  width: 80vw;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.input-card h1 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  background: linear-gradient(to right, #4f46e5, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 12px;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-form .input-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-form input[type="text"] {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+  color: #1f2937;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.input-form input[type="text"]:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5);
+}
+
+.input-form button {
+  padding: 12px 24px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #4f46e5, #9333ea);
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.input-form button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.input-form button:not(:disabled):hover {
+  background: linear-gradient(to right, #4338ca, #7e22ce);
+}
+
+@media (min-width: 640px) {
+  .input-form .input-row {
+    flex-direction: row;
+  }
+}
