@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 export default function GrokProcessor() {
   const [input, setInput] = useState("");
@@ -115,6 +116,13 @@ export default function GrokProcessor() {
     }
   };
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(
+      () => alert("Code copied to clipboard!"),
+      (err) => console.error("Failed to copy:", err)
+    );
+  };
+
   return (
     <div className="grok-container">
       <div className="history">
@@ -127,8 +135,35 @@ export default function GrokProcessor() {
               </div>
               {item.answer ? (
                 <div className="answer">
-                  <span>Grok:</span>
-                  <p>{item.answer}</p>
+                  <span>Lalit:</span>
+                  <ReactMarkdown
+                    components={{
+                      code({ node, inline, className, children, ...props }) {
+                        const codeContent = String(children).replace(/\n$/, "");
+                        return !inline ? (
+                          <div className="code-block">
+                            <pre>
+                              <code className={className} {...props}>
+                                {codeContent}
+                              </code>
+                            </pre>
+                            <button
+                              className="copy-button"
+                              onClick={() => copyToClipboard(codeContent)}
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        ) : (
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  >
+                    {item.answer}
+                  </ReactMarkdown>
                 </div>
               ) : loading && index === history.length - 1 ? (
                 <div className="loading">
@@ -160,7 +195,7 @@ export default function GrokProcessor() {
 
       <div className="input-section">
         <div className="input-card">
-          <h1>Ask Grok</h1>
+          <h1>Ask Me</h1>
           <div className="input-form">
             <div className="input-row">
               <input

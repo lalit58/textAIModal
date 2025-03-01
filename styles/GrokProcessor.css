@@ -3,14 +3,14 @@ body {
   padding: 0;
   min-height: 100vh;
   background: linear-gradient(to bottom right, #4b5e9e, #9b59b6, #ff6b81);
-  overflow-x: hidden; /* Prevent horizontal scroll on page */
+  overflow-x: hidden;
 }
 
 .grok-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
+  /* padding: 16px; */
   min-height: 100vh;
 }
 
@@ -30,14 +30,13 @@ body {
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  margin: 0 auto;
-  width: 80vw;
+  /* width: 100%; */
   max-width: 768px;
   transition: transform 0.2s, box-shadow 0.2s;
-  overflow-x: hidden;
   overflow-wrap: break-word;
-  word-break: break-all;
-  white-space: normal;
+  word-wrap: break-word;
+  word-break: normal;
+  white-space: pre-wrap;
 }
 
 .card:hover {
@@ -64,10 +63,10 @@ body {
   margin-top: 6px;
   color: #1f2937;
   font-size: 16px;
-  overflow-x: hidden;
   overflow-wrap: break-word;
-  word-break: break-all;
-  white-space: normal;
+  word-wrap: break-word;
+  word-break: normal;
+  white-space: pre-wrap;
 }
 
 .card .answer span {
@@ -85,10 +84,10 @@ body {
   margin-top: 6px;
   color: #1f2937;
   font-size: 16px;
-  overflow-x: hidden;
   overflow-wrap: break-word;
-  word-break: break-all;
-  white-space: normal;
+  word-wrap: break-word;
+  word-break: normal;
+  white-space: pre-wrap;
 }
 
 .card .loading {
@@ -110,6 +109,44 @@ body {
   font-size: 16px;
 }
 
+.code-block {
+  position: relative;
+  background: #2d2d2d;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 8px;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  margin: 0;
+  color: #f8f8f2;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+}
+
+.code-block code {
+  display: block;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+
+.copy-button:hover {
+  background: #4338ca;
+}
+
 @keyframes spin {
   100% {
     transform: rotate(360deg);
@@ -117,14 +154,16 @@ body {
 }
 
 .input-section {
-  position: fixed; /* Make input section sticky */
-  bottom: 0; /* Stick to the bottom */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-  width: 80vw; /* Match the width of the history div */
-  max-width: 768px; /* Match the max-width of the history div */
-  padding: 16px;
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 768px;
+  padding: 0 16px;
+  box-sizing: border-box;
   background: transparent;
+  z-index: 10;
 }
 
 .input-card {
@@ -132,9 +171,9 @@ body {
   border-radius: 12px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   padding: 16px;
-  width: 80vw;
+  width: 100%;
   max-width: 768px;
-  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .input-card h1 {
@@ -170,10 +209,10 @@ body {
   color: #1f2937;
   width: 100%;
   box-sizing: border-box;
-  overflow-x: hidden;
   overflow-wrap: break-word;
-  word-break: break-all;
-  white-space: normal;
+  word-wrap: break-word;
+  word-break: normal;
+  white-space: pre-wrap;
 }
 
 .input-form input[type="text"]:focus {
@@ -204,5 +243,20 @@ body {
 @media (min-width: 640px) {
   .input-form .input-row {
     flex-direction: row;
+  }
+}
+
+@media (max-width: 639px) {
+  .input-section {
+    left: 0;
+    right: 0;
+    transform: none;
+    padding: 0 8px;
+  }
+  .input-card {
+    width: 100%;
+  }
+  .card {
+    width: 100%;
   }
 }
