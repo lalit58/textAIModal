@@ -135,7 +135,7 @@ export default function GrokProcessor() {
               </div>
               {item.answer ? (
                 <div className="answer">
-                  <span>Lalit:</span>
+                  <span>Agent:</span>
                   <ReactMarkdown
                     components={{
                       code({ node, inline, className, children, ...props }) {
